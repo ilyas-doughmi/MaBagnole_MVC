@@ -31,3 +31,6 @@ else{
 if(method_exists($controller,$method)){
     call_user_func_array([$controller,$method],$urlParts);
 }
+else{
+    echo "methode not found";
+}
