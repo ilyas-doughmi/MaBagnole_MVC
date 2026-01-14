@@ -23,7 +23,7 @@ if(isset($_SESSION["id"])){
 <nav class="bg-white/95 backdrop-blur-md fixed w-full z-50 border-b border-gray-100 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 lg:px-8">
         <div class="flex justify-between h-20 items-center">
-            <a href="<?= $root_path ?>index.php" class="flex items-center gap-2">
+            <a href="home" class="flex items-center gap-2">
                 <div class="bg-[#FF3B00] text-white w-10 h-10 flex items-center justify-center rounded text-xl font-bold shadow-lg shadow-orange-500/30">
                     <i class="fa-solid fa-car"></i>
                 </div>
