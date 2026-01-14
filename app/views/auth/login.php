@@ -48,7 +48,7 @@
                 <p class="text-gray-500 font-medium">Connectez-vous pour gérer vos locations.</p>
             </div>
 
-            <form action="../includes/login.php" method="POST" class="space-y-6">
+            <form action="login/authenticate" method="POST" class="space-y-6">
                 <input type="text" name="login" id="" hidden>
                 <div>
                     <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Email</label>
