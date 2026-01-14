@@ -53,7 +53,7 @@
         <h2 class="font-black text-4xl uppercase mb-2">Créer un compte</h2>
         <p class="text-gray-500 mb-8">Commencez en quelques secondes.</p>
 
-        <form id="registerForm" method="POST" action="../includes/register.php" class="space-y-6">
+        <form id="registerForm" method="POST" action="register/create" class="space-y-6">
                 <input type="text" name="register" hidden>
             <div>
                 <label class="block text-xs font-bold text-gray-400 mb-2 uppercase">Nom complet</label>
