@@ -45,7 +45,6 @@
 </head>
 <body class="bg-gray-50 text-brand-black antialiased selection:bg-brand-orange selection:text-white flex flex-col min-h-screen">
 
-    <?php require_once  '/views/templates/header.php'; ?>
 
     <header class="pt-32 pb-12 px-6 relative bg-white border-b border-gray-100 overflow-hidden">
         <div class="absolute inset-0 bg-grid-pattern opacity-50"></div>
