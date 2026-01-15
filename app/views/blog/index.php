@@ -38,7 +38,6 @@
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased selection:bg-locar-orange selection:text-white">
 
-    <?php require_once  '/views/templates/header.php'; ?>
 
     <header class="relative bg-locar-dark text-white pt-32 pb-20 overflow-hidden">
         <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-[#252525] to-transparent z-0"></div>
