@@ -37,7 +37,7 @@
 <body class="bg-gray-50 text-brand-black antialiased selection:bg-brand-orange selection:text-white">
 
     <!-- Navigation -->
-    <?php require_once APPROOT . '/views/templates/header.php'; ?>
+    <?php require_once '/views/templates/header.php'; ?>
 
     <!-- Hero Section -->
     <header class="relative bg-brand-black text-white pt-40 pb-24 overflow-hidden">
