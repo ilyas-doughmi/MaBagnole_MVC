@@ -1,31 +1,9 @@
-<?php
-// require_once '../includes/guard.php';
-// require_once '../Classes/db.php';
-// require_once '../Classes/vehicle.php';
-// require_once '../Classes/Review.php';
-
-// require_login();
-
-// $db = DB::connect();
-// $vehicleObj = new vehicle($db);
-// $reviewObj = new Review($db);
-
-// $vehicle_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-// $vehicle = $vehicleObj->getVehicleById($vehicle_id);
-
-// if (!$vehicle) {
-//     header('Location: vehicles.php');
-//     exit;
-// }
-
-// $reviews = $reviewObj->getReviewsByVehicleId($vehicle_id);
-?>
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($vehicle['brand'] . ' ' . $vehicle['model']) ?> | MaBagnole Premium</title>
+    <title><?= htmlspecialchars($data['vehicle']['brand'] . ' ' . $data['vehicle']['model']) ?> | MaBagnole Premium</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -59,7 +37,7 @@
 <body class="bg-gray-50 text-brand-black antialiased selection:bg-brand-orange selection:text-white">
 
     <!-- Navigation -->
-    <?php $root_path = '../'; include 'header.php'; ?>
+    <?php require_once '/views/templates/header.php'; ?>
 
     <!-- Main Content -->
     <div class="pt-32 pb-20 min-h-screen">
@@ -69,7 +47,7 @@
             <nav class="flex mb-8 text-sm font-medium text-gray-400" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
-                        <a href="vehicles.php" class="inline-flex items-center hover:text-brand-orange transition">
+                        <a href="/vehicle" class="inline-flex items-center hover:text-brand-orange transition">
                             <i class="fa-solid fa-arrow-left mr-2"></i> Retour à la flotte
                         </a>
                     </li>
@@ -82,8 +60,8 @@
                 <div class="lg:w-2/3">
                     <!-- Title Section Mobile -->
                     <div class="lg:hidden mb-6">
-                        <span class="text-brand-orange font-bold tracking-widest uppercase text-xs mb-2 block"><?= htmlspecialchars($vehicle['category_name']) ?></span>
-                        <h1 class="text-3xl font-black uppercase"><?= htmlspecialchars($vehicle['brand']) ?> <span class="text-gray-500 font-medium"><?= htmlspecialchars($vehicle['model']) ?></span></h1>
+                        <span class="text-brand-orange font-bold tracking-widest uppercase text-xs mb-2 block"><?= htmlspecialchars($data['vehicle']['category_name']) ?></span>
+                        <h1 class="text-3xl font-black uppercase"><?= htmlspecialchars($data['vehicle']['brand']) ?> <span class="text-gray-500 font-medium"><?= htmlspecialchars($data['vehicle']['model']) ?></span></h1>
                     </div>
 
                     <!-- Main Image -->
@@ -91,25 +69,25 @@
                         <div class="relative rounded-2xl overflow-hidden aspect-video bg-gray-100 flex items-center justify-center">
                             <div class="absolute top-4 left-4 z-20">
                                 <span class="bg-brand-black text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-lg">
-                                    <?= htmlspecialchars($vehicle['category_name']) ?>
+                                    <?= htmlspecialchars($data['vehicle']['category_name']) ?>
                                 </span>
                             </div>
                             <!-- Availability Badge -->
                             <div class="absolute top-4 right-4 z-20">
-                                <?php if ($vehicle['is_available']): ?>
+                                <?php if ($data['vehicle']['is_available']): ?>
                                     <span class="bg-green-500/90 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1"><i class="fa-solid fa-check"></i> Disponible</span>
                                 <?php else: ?>
                                     <span class="bg-red-500/90 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1"><i class="fa-solid fa-times"></i> Indisponible</span>
                                 <?php endif; ?>
                             </div>
 
-                            <img src="<?= htmlspecialchars($vehicle['image']) ?>" 
+                            <img src="<?= htmlspecialchars($data['vehicle']['image']) ?>" 
                                  class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 ease-in-out" 
-                                 alt="<?= htmlspecialchars($vehicle['brand']) ?>">
+                                 alt="<?= htmlspecialchars($data['vehicle']['brand']) ?>">
                         </div>
                     </div>
 
-                    <!-- Specs Grid (Static for now) -->
+                    <!-- Specs (Mock) -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
                         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center gap-3 hover:border-brand-orange/20 transition-colors">
                             <div class="w-12 h-12 rounded-full bg-brand-orange/5 flex items-center justify-center text-brand-orange text-xl">
@@ -153,8 +131,8 @@
                     <div class="prose prose-lg max-w-none text-gray-500 mb-16">
                         <h3 class="text-2xl font-black text-brand-black uppercase mb-6 tracking-tight">À propos du véhicule</h3>
                         <p>
-                            Découvrez le plaisir de conduire avec notre <?= htmlspecialchars($vehicle['brand'] . ' ' . $vehicle['model']) ?>. 
-                            Alliant confort exceptionnel et design élégant, ce véhicule de la catégorie <?= htmlspecialchars($vehicle['category_name']) ?> 
+                            Découvrez le plaisir de conduire avec notre <?= htmlspecialchars($data['vehicle']['brand'] . ' ' . $data['vehicle']['model']) ?>. 
+                            Alliant confort exceptionnel et design élégant, ce véhicule de la catégorie <?= htmlspecialchars($data['vehicle']['category_name']) ?> 
                             est le compagnon idéal pour vos déplacements professionnels ou vos escapades le week-end. 
                             Entretenu méticuleusement par nos experts MaBagnole, il vous garantit sécurité et sérénité sur la route.
                         </p>
@@ -167,8 +145,8 @@
                         <!-- Add Review Form -->
                         <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm mb-8">
                             <h4 class="font-bold text-brand-black mb-4">Laisser un avis</h4>
-                            <form action="submit_review.php" method="POST" class="space-y-4">
-                                <input type="hidden" name="vehicle_id" value="<?= $vehicle['vehicle_id'] ?>">
+                            <form action="/review/store" method="POST" class="space-y-4">
+                                <input type="hidden" name="vehicle_id" value="<?= $data['vehicle']['vehicle_id'] ?>">
                                 <div class="flex items-center gap-4">
                                     <label class="text-sm font-bold text-gray-400">Note:</label>
                                     <select name="rating" required class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 font-bold outline-none focus:border-brand-orange">
@@ -191,10 +169,10 @@
 
                         <!-- Reviews List -->
                         <div class="grid gap-6">
-                            <?php if (empty($reviews)): ?>
+                            <?php if (empty($data['reviews'])): ?>
                                 <p class="text-gray-400 italic">Aucun avis pour ce véhicule. Soyez le premier à laisser un avis !</p>
                             <?php else: ?>
-                                <?php foreach($reviews as $review): ?>
+                                <?php foreach($data['reviews'] as $review): ?>
                                 <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
                                     <div class="flex items-center gap-4 mb-4">
                                         <div class="w-10 h-10 bg-brand-black text-white rounded-full flex items-center justify-center font-bold text-sm">
@@ -221,17 +199,17 @@
                 <div class="lg:w-1/3">
                     <div class="bg-white rounded-3xl shadow-2xl shadow-brand-black/10 p-8 sticky top-24 border border-gray-100">
                         <div class="mb-8 border-b border-gray-100 pb-8">
-                            <span class="text-brand-orange font-bold tracking-widest uppercase text-xs mb-1 block"><?= htmlspecialchars($vehicle['category_name']) ?></span>
-                            <h2 class="text-3xl font-black uppercase mb-4 leading-none"><?= htmlspecialchars($vehicle['brand']) ?> <span class="text-gray-400"><?= htmlspecialchars($vehicle['model']) ?></span></h2>
+                            <span class="text-brand-orange font-bold tracking-widest uppercase text-xs mb-1 block"><?= htmlspecialchars($data['vehicle']['category_name']) ?></span>
+                            <h2 class="text-3xl font-black uppercase mb-4 leading-none"><?= htmlspecialchars($data['vehicle']['brand']) ?> <span class="text-gray-400"><?= htmlspecialchars($data['vehicle']['model']) ?></span></h2>
                             
                             <div class="flex items-baseline gap-1">
-                                <span class="text-5xl font-black text-brand-black"><?= htmlspecialchars($vehicle['price_per_day']) ?></span>
+                                <span class="text-5xl font-black text-brand-black"><?= htmlspecialchars($data['vehicle']['price_per_day']) ?></span>
                                 <span class="text-3xl font-bold text-brand-orange">$</span>
                                 <span class="text-gray-400 font-bold ml-1">/ jour</span>
                             </div>
                         </div>
 
-                        <form action="submit_reservation.php" method="POST" class="space-y-6">
+                        <form action="/reservation/store" method="POST" class="space-y-6">
                             <?php if (isset($_GET['error'])): ?>
                                 <?php if ($_GET['error'] === 'unavailable'): ?>
                                     <div class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm font-bold flex items-center gap-2">
@@ -250,7 +228,7 @@
                                     </div>
                                 <?php endif; ?>
                             <?php endif; ?>
-                            <input type="hidden" name="vehicle_id" value="<?= $vehicle['vehicle_id'] ?>">
+                            <input type="hidden" name="vehicle_id" value="<?= $data['vehicle']['vehicle_id'] ?>">
                             
                             <div class="space-y-4">
                                 <div>
