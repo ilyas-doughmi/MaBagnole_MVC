@@ -78,7 +78,7 @@
 
 <body class="bg-white text-brand-black antialiased selection:bg-brand-orange selection:text-white">
 
-    <?php require_once APPROOT . '/views/templates/header.php'; ?>
+    <?php require_once  '/views/templates/header.php'; ?>
 
     <div class="fixed top-20 left-0 h-1 bg-brand-orange z-50 transition-all duration-300" id="progressBar" style="width: 0%"></div>
 
