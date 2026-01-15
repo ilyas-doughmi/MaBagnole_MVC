@@ -5,7 +5,7 @@ class VehicleController{
     public function index()
     {
         require_once 'app/views/layouts/header.php';
-        require_once 'app/views/vehicles/showcase.php';
+        require_once 'app/views/vehicles/index.php';
     }
 
     public function details()
