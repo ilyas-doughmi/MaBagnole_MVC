@@ -37,7 +37,7 @@
 <body class="bg-gray-50 text-brand-black antialiased selection:bg-brand-orange selection:text-white">
 
     <!-- Navigation -->
-    <?php require_once '/views/templates/header.php'; ?>
+    <?php require_once 'app/views/layouts/header.php'; ?>
 
     <!-- Hero Section -->
     <header class="relative bg-brand-black text-white pt-40 pb-24 overflow-hidden">
@@ -62,14 +62,14 @@
     <div class="bg-white border-b border-gray-100 sticky top-0 z-40 backdrop-blur-md bg-white/80">
         <div class="container mx-auto px-6 py-4">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <form action="/vehicle/index" method="GET" class="w-full md:w-auto">
+                <form action="<?= $base_url ?>/vehicle/index" method="GET" class="w-full md:w-auto">
                     <div class="relative">
                         <input type="text" name="search" value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>" 
                                placeholder="Rechercher par marque, modèle..." 
                                class="w-full md:w-80 pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-full text-sm font-medium outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition">
                         <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                         <?php if (isset($_GET['search']) && !empty($_GET['search'])): ?>
-                            <a href="/vehicle/index" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-orange">
+                            <a href="<?= $base_url ?>/vehicle/index" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-orange">
                                 <i class="fa-solid fa-times"></i>
                             </a>
                         <?php endif; ?>
@@ -90,7 +90,7 @@
     <section class="py-20 min-h-screen bg-gray-50">
         <div class="container mx-auto px-6">
             
-            <?php if (empty($data['vehicles'])): ?>
+            <?php if (empty($vehicles)): ?>
                 <div class="flex flex-col items-center justify-center py-32 text-center opacity-50">
                     <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mb-6">
                         <i class="fa-solid fa-car text-3xl text-gray-400"></i>
@@ -100,7 +100,7 @@
                 </div>
             <?php else: ?>
                 <div id="vehicleGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <?php foreach ($data['vehicles'] as $vehicle): ?>
+                    <?php foreach ($vehicles as $vehicle): ?>
                         <div class="vehicle-card group relative bg-white rounded-3xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-500 ease-out flex flex-col h-full border border-gray-100" data-category="<?= htmlspecialchars($vehicle['category_name']) ?>">
                             
                             <!-- Image Container -->
@@ -154,7 +154,7 @@
                                 </div>
 
                                 <div class="mt-auto">
-                                    <a href="/vehicle/details/<?= $vehicle['vehicle_id'] ?>" 
+                                    <a href="<?= $base_url ?>/vehicle/details/<?= $vehicle['vehicle_id'] ?>" 
                                        class="block w-full bg-brand-black text-white font-bold py-4 rounded-xl text-center shadow-lg transform group-hover:translate-y-[-2px] group-hover:shadow-xl group-hover:bg-brand-orange transition-all duration-300">
                                         Réserver ce véhicule
                                     </a>
@@ -165,7 +165,7 @@
                 </div>
             <?php endif; ?>
 
-            <?php if (empty($search) && isset($data['totalPages']) && $data['totalPages'] > 1): ?>
+            <?php if (empty($search) && isset($totalPages) && $totalPages > 1): ?>
             <div class="flex justify-center items-center gap-2 mt-12">
                 <?php $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; ?>
                 <?php if ($page > 1): ?>
@@ -174,13 +174,13 @@
                     </a>
                 <?php endif; ?>
 
-                <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                     <a href="?page=<?= $i ?>" class="px-4 py-2 rounded-lg font-bold transition <?= $i == $page ? 'bg-brand-black text-white' : 'bg-white border border-gray-200 hover:bg-gray-100' ?>">
                         <?= $i ?>
                     </a>
                 <?php endfor; ?>
 
-                <?php if ($page < $data['totalPages']): ?>
+                <?php if ($page < $totalPages): ?>
                     <a href="?page=<?= $page + 1 ?>" class="px-4 py-2 bg-white border border-gray-200 rounded-lg font-bold hover:bg-brand-orange hover:text-white hover:border-brand-orange transition">
                         <i class="fa-solid fa-chevron-right"></i>
                     </a>
